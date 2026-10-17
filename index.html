@@ -1,0 +1,375 @@
+HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>For NoUmAn Ghouri | A New Beginning</title>
+
+<style>
+:root {
+  --bg:#071426;
+  --panel:#10223a;
+  --text:#f4f6fc;
+  --muted:#b5c4da;
+  --gold:#e7c98a;
+  --line:#29405d;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  background:radial-gradient(ellipse at top,#183252,transparent 50%),var(--bg);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.7;
+}
+button { font:inherit; }
+.site {
+  width:min(760px,100%);
+  margin:auto;
+  padding:20px;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+header {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:8px 0 18px;
+  border-bottom:1px solid var(--line);
+}
+.brand { color:var(--gold);font-size:.78rem;font-weight:bold;letter-spacing:2px; }
+.top-note { color:var(--muted);font-size:.8rem;text-align:right; }
+main { flex:1; }
+.screen { display:none;padding:35px 0 25px;animation:appear .35s ease; }
+.screen.active { display:block; }
+@keyframes appear {
+  from { opacity:0;transform:translateY(8px); }
+  to { opacity:1;transform:translateY(0); }
+}
+.eyebrow {
+  color:var(--gold);
+  font-size:.76rem;
+  font-weight:bold;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+h1,h2,h3 { line-height:1.25; }
+h1 { font-size:clamp(2.2rem,8vw,4rem);letter-spacing:-1.5px; }
+h2 { font-size:clamp(1.8rem,6vw,2.7rem); }
+h3 { margin:0 0 6px; }
+p { color:var(--muted); }
+.lead { font-size:1.12rem; }
+.gold { color:var(--gold); }
+.hero { min-height:55vh;display:flex;flex-direction:column;justify-content:center; }
+.symbol {
+  width:68px;height:68px;
+  border:1px solid #9f895c;border-radius:22px;
+  display:grid;place-items:center;
+  color:var(--gold);font-size:2rem;
+  background:#112640;
+}
+.panel,.memory-card {
+  background:linear-gradient(145deg,#132943,#0d1d32);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:22px;
+  margin:20px 0;
+}
+.quote { color:var(--text);font-size:1.25rem;line-height:1.65; }
+.cards,.list,.gallery { display:grid;gap:12px;margin:22px 0; }
+.cards { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.reason-card {
+  text-align:left;color:var(--text);
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;padding:18px;
+  cursor:pointer;min-height:125px;
+}
+.reason-card:hover,.reason-card:focus-visible { border-color:var(--gold); }
+.card-icon { display:block;color:var(--gold);font-size:1.4rem; }
+.card-title { display:block;font-weight:bold;margin:7px 0; }
+.card-detail { display:none;color:var(--muted);margin-top:10px;font-size:.93rem; }
+.reason-card.open .card-detail { display:block; }
+.list-item {
+  display:flex;gap:14px;align-items:flex-start;
+  background:rgba(16,34,58,.8);
+  border:1px solid var(--line);
+  border-radius:15px;padding:17px;
+}
+.mark { color:var(--gold);font-size:1.2rem; }
+.list-item p { margin:4px 0 0; }
+.gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.photo {
+  margin:0;overflow:hidden;
+  border:1px solid var(--line);
+  background:var(--panel);border-radius:15px;
+}
+.photo img {
+  display:block;width:100%;aspect-ratio:4/5;
+  object-fit:cover;background:#142943;
+}
+.photo figcaption { padding:10px;color:var(--muted);font-size:.82rem; }
+.photo:last-child:nth-child(odd) {
+  grid-column:1/-1;width:calc(50% - 6px);justify-self:center;
+}
+.final-note { text-align:center;padding:25px 5px; }
+.final-note .symbol { margin:0 auto 20px; }
+.final-note p { max-width:570px;margin:0 auto 18px; }
+.signature { color:var(--gold);margin-top:25px!important; }
+.navigation {
+  display:flex;justify-content:space-between;align-items:center;
+  gap:10px;border-top:1px solid var(--line);padding:18px 0 8px;
+}
+.btn {
+  border:1px solid var(--line);border-radius:30px;
+  padding:12px 18px;cursor:pointer;font-weight:bold;
+}
+.btn-primary { color:#111d2e;background:var(--gold);border-color:var(--gold); }
+.btn-secondary { color:var(--text);background:var(--panel); }
+.counter { color:var(--muted);font-size:.8rem;white-space:nowrap; }
+.progress-track { height:3px;background:#1c3049;margin-top:14px; }
+.progress { height:100%;width:10%;background:var(--gold);transition:width .3s; }
+footer { text-align:center;color:#8499b5;font-size:.75rem;padding:22px 0 5px; }
+[hidden] { display:none!important; }
+
+@media(max-width:480px) {
+  .site { padding:15px; }
+  .screen { padding-top:25px; }
+  .cards { grid-template-columns:1fr; }
+  .reason-card { min-height:0; }
+  .panel,.memory-card { padding:18px; }
+  .btn { padding:11px 13px;font-size:.88rem; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation:none!important;transition:none!important; }
+}
+</style>
+</head>
+
+<body>
+<div class="site">
+<header>
+  <div class="brand">A LITTLE SURPRISE</div>
+  <div class="top-note">A new chapter for NoUmAn</div>
+</header>
+
+<main>
+<!-- SCREEN 1 -->
+<section class="screen active" aria-label="The surprise">
+  <div class="hero">
+    <div class="symbol">✦</div>
+    <p class="eyebrow">Something made just for you</p>
+    <h1>A little surprise has been waiting for you.</h1>
+    <p class="lead">Some moments deserve more than a simple congratulations. This one is for your hard work, your journey, and the new beginning ahead.</p>
+    <p>Ready to see what's waiting for you?</p>
+  </div>
+</section>
+
+<!-- SCREEN 2 -->
+<section class="screen" aria-label="Congratulations">
+  <p class="eyebrow">Your moment is here</p>
+  <h1>Congratulations,<br><span class="gold">NoUmAn Ghouri.</span></h1>
+  <p class="lead">You did it! After all the effort, waiting, and challenges along the way, a new door has opened.</p>
+  <div class="panel">
+    <p class="quote">I'm genuinely proud of you. This is your moment to step forward with confidence and give yourself a chance to shine.</p>
+  </div>
+  <p>Here's to your new dispatch job with USA and all the possibilities this beginning can bring.</p>
+</section>
+
+<!-- SCREEN 3 -->
+<section class="screen" aria-label="Reasons you deserve this">
+  <p class="eyebrow">A few things worth celebrating</p>
+  <h2>Why you deserve this opportunity</h2>
+  <p>Tap each card to discover its message.</p>
+  <div class="cards">
+    <button class="reason-card" type="button" aria-expanded="false">
+      <span class="card-icon">✦</span>
+      <span class="card-title">Your hard work</span>
+      <span>You kept going.</span>
+      <span class="card-detail">You struggled to reach this point, and that makes this moment meaningful. Give yourself credit for how far you've come.</span>
+    </button>
+    <button class="reason-card" type="button" aria-expanded="false">
+      <span class="card-icon">◇</span>
+      <span class="card-title">Your loyalty</span>
+      <span>A quality that matters.</span>
+      <span class="card-detail">Your loyalty means a lot to me. The way you stand by the people who matter to you says something important about your character.</span>
+    </button>
+    <button class="reason-card" type="button" aria-expanded="false">
+      <span class="card-icon">↗</span>
+      <span class="card-title">Your determination</span>
+      <span>Your story is unfolding.</span>
+      <span class="card-detail">A difficult journey doesn't decide your future. Keep learning, stay patient, and give yourself room to grow into this new role.</span>
+    </button>
+    <button class="reason-card" type="button" aria-expanded="false">
+      <span class="card-icon">♡</span>
+      <span class="card-title">Your caring nature</span>
+      <span>You make people feel valued.</span>
+      <span class="card-detail">I appreciate the way you make yourself available for the people you care about. I hope your new workplace appreciates you, too.</span>
+    </button>
+  </div>
+</section>
+
+<!-- SCREEN 4 -->
+<section class="screen" aria-label="Your journey">
+  <p class="eyebrow">The journey behind the news</p>
+  <h2>Your hard work deserves its moment.</h2>
+  <p class="lead">I know this journey hasn't always been easy. You've struggled along the way, and that's exactly why this new beginning matters.</p>
+  <div class="list">
+    <div class="list-item"><span class="mark">01</span><div><h3>You kept moving forward</h3><p>Even when things took time, you continued towards the opportunity you wanted.</p></div></div>
+    <div class="list-item"><span class="mark">02</span><div><h3>Now you get to begin again</h3><p>This job is a chance to learn, build confidence, and discover what you can achieve.</p></div></div>
+    <div class="list-item"><span class="mark">03</span><div><h3>Take it one day at a time</h3><p>You don't need to know everything on day one. Keep showing up, asking questions, and growing.</p></div></div>
+  </div>
+  <div class="panel"><p class="quote">The difficult days are part of your story, but they don't get to write the whole ending.</p></div>
+</section>
+
+<!-- SCREEN 5 -->
+<section class="screen" aria-label="The person you are">
+  <p class="eyebrow">The little things that matter</p>
+  <h2>It's not only what you do. It's who you are.</h2>
+  <p>Beyond your job title are the qualities that make you special.</p>
+  <div class="list">
+    <div class="list-item"><span class="mark">♡</span><div><h3>Your love</h3><p>The love you show me has a special place in my heart. It's one of the things I value most.</p></div></div>
+    <div class="list-item"><span class="mark">◇</span><div><h3>Your loyalty</h3><p>Being able to count on someone matters. Your loyalty is something I genuinely appreciate.</p></div></div>
+    <div class="list-item"><span class="mark">✧</span><div><h3>The way you make time</h3><p>You make an effort to be there for me. Even the small gestures can mean so much.</p></div></div>
+  </div>
+  <p class="lead">I hope you carry these qualities with you as you step into this next part of your life.</p>
+</section>
+
+<!-- SCREEN 6 -->
+<section class="screen" aria-label="Your story">
+  <p class="eyebrow">A chapter worth remembering</p>
+  <h2>From struggling to stepping forward.</h2>
+  <div class="memory-card">
+    <p class="quote">You've struggled a lot, and now it's your time to get in there and make the most of it.</p>
+    <p>This is the part of the story where you take what you've learned, walk into a new opportunity, and give yourself permission to grow.</p>
+  </div>
+  <p>Every journey has its own timing. You don't have to compare yours with anybody else's. Keep your focus on the next step, celebrate the small wins, and remember how much effort it took to get here.</p>
+  <p>I hope one day you look back at this beginning and smile at how much has changed.</p>
+</section>
+
+<!-- SCREEN 7 -->
+<section class="screen" aria-label="Why you matter">
+  <p class="eyebrow">Something I want you to know</p>
+  <h2>I'm proud of you for more than this job.</h2>
+  <div class="panel">
+    <p class="quote">Your success matters to me because you matter to me.</p>
+    <p>I'm proud of the progress you're making and happy to see another opportunity opening up for you. I appreciate your love, your loyalty, and the way you make an effort to be there for me.</p>
+    <p>I want you to have things you're excited about, goals worth chasing, and a life that gives you reasons to feel proud of yourself, too.</p>
+  </div>
+  <p class="lead">I'll be cheering you on as you find your feet, learn the work, and make this new chapter your own.</p>
+</section>
+
+<!-- SCREEN 8 -->
+<section class="screen" aria-label="Wishes for your future">
+  <p class="eyebrow">A wish for your new beginning</p>
+  <h2>May this chapter bring good things your way.</h2>
+  <div class="list">
+    <div class="list-item"><span class="mark">✦</span><div><h3>Confidence</h3><p>May you trust yourself more with every new thing you learn.</p></div></div>
+    <div class="list-item"><span class="mark">✦</span><div><h3>Growth</h3><p>May this job open doors to new skills, opportunities, and achievements.</p></div></div>
+    <div class="list-item"><span class="mark">✦</span><div><h3>Peace and happiness</h3><p>May your hard work bring you stability, satisfaction, and more reasons to smile.</p></div></div>
+  </div>
+  <div class="panel"><p class="quote">You don't have to be perfect. Just be willing to learn, keep your values close, and take the next step with courage.</p></div>
+</section>
+
+<!-- SCREEN 9: EXACTLY FIVE PHOTOS -->
+<section class="screen" aria-label="Five photo memories">
+  <p class="eyebrow">Little moments, lasting memories</p>
+  <h2>Five pictures, one special person.</h2>
+  <p>Replace these five image files with your favourite photos. Keep their filenames the same.</p>
+  <div class="gallery">
+    <figure class="photo"><img src="photo1.jpg" alt="Memory photo one" loading="lazy"><figcaption>A favourite moment</figcaption></figure>
+    <figure class="photo"><img src="photo2.jpg" alt="Memory photo two" loading="lazy"><figcaption>A moment to smile about</figcaption></figure>
+    <figure class="photo"><img src="photo3.jpg" alt="Memory photo three" loading="lazy"><figcaption>One for the memories</figcaption></figure>
+    <figure class="photo"><img src="photo4.jpg" alt="Memory photo four" loading="lazy"><figcaption>A little piece of our story</figcaption></figure>
+    <figure class="photo"><img src="photo5.jpg" alt="Memory photo five" loading="lazy"><figcaption>More moments still to come</figcaption></figure>
+  </div>
+  <p>Here's to the memories you've already made and the ones still ahead.</p>
+</section>
+
+<!-- SCREEN 10 -->
+<section class="screen" aria-label="Final congratulations">
+  <div class="final-note">
+    <div class="symbol">✦</div>
+    <p class="eyebrow">Here's to what comes next</p>
+    <h1>You've got this, <span class="gold">NoUmAn.</span></h1>
+    <p class="lead">Congratulations on your new dispatch job with USA. I know you've struggled to reach this point, and I hope you take a moment to appreciate how far you've come.</p>
+    <p>Walk into this new chapter with an open mind. Learn, grow, work hard, and give yourself time to settle in. Every day is another chance to get better.</p>
+    <p>I'm proud of you, I believe in your ability to keep moving forward, and I truly wish you success and happiness in everything ahead.</p>
+    <p class="quote">This is your time. Make the most of it.</p>
+    <p class="signature">With love, pride, and the warmest wishes ♡</p>
+    <button class="btn btn-secondary" id="restartBtn" type="button">↺ Read it again</button>
+  </div>
+</section>
+</main>
+
+<nav class="navigation" aria-label="Screen navigation">
+  <button class="btn btn-secondary" id="backBtn" type="button" hidden>← Back</button>
+  <span class="counter" id="counter" aria-live="polite">1 / 10</span>
+  <button class="btn btn-primary" id="nextBtn" type="button">Unlock your surprise →</button>
+</nav>
+
+<div class="progress-track" aria-hidden="true"><div class="progress" id="progress"></div></div>
+<footer>Made especially for NoUmAn Ghouri · A new chapter begins</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const screens = Array.from(document.querySelectorAll(".screen"));
+  const backBtn = document.getElementById("backBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const counter = document.getElementById("counter");
+  const progress = document.getElementById("progress");
+  const restartBtn = document.getElementById("restartBtn");
+  let current = 0;
+
+  function showScreen(index) {
+    if (index < 0 || index >= screens.length) return;
+    current = index;
+
+    screens.forEach(function (screen, i) {
+      const active = i === current;
+      screen.classList.toggle("active", active);
+      screen.setAttribute("aria-hidden", String(!active));
+    });
+
+    backBtn.hidden = current === 0;
+    nextBtn.hidden = current === screens.length - 1;
+    nextBtn.textContent = current === 0 ? "Unlock your surprise →" : "Continue →";
+    counter.textContent = (current + 1) + " / " + screens.length;
+    progress.style.width = ((current + 1) / screens.length * 100) + "%";
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  nextBtn.addEventListener("click", function () {
+    showScreen(current + 1);
+  });
+
+  backBtn.addEventListener("click", function () {
+    showScreen(current - 1);
+  });
+
+  restartBtn.addEventListener("click", function () {
+    showScreen(0);
+  });
+
+  document.querySelectorAll(".reason-card").forEach(function (card) {
+    card.addEventListener("click", function () {
+      const open = card.classList.toggle("open");
+      card.setAttribute("aria-expanded", String(open));
+    });
+  });
+
+  showScreen(0);
+})();
+</script>
+</body>
+  </html>
+  
